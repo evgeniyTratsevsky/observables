@@ -1,4 +1,188 @@
-<h4>Examples</h4>
-<input type="text" name="textInput"> &nbsp;
-<button name="clickButton">Click</button>
+<div class="container">
+  <header class="header">
+    <h1>🚀 RxJS Operators Playground</h1>
+    <p class="subtitle">Interactive visualization of RxJS operators and observables</p>
+  </header>
+
+  <div class="content">
+    <aside class="sidebar">
+      <div class="category">
+        <h3>📦 Основы</h3>
+        <button (click)="runExample('observable')" [class.active]="activeExample === 'observable'">
+          Observable
+        </button>
+        <button (click)="runExample('observer')" [class.active]="activeExample === 'observer'">
+          Observer
+        </button>
+        <button (click)="runExample('subject')" [class.active]="activeExample === 'subject'">
+          Subject
+        </button>
+        <button (click)="runExample('behaviorSubject')" [class.active]="activeExample === 'behaviorSubject'">
+          BehaviorSubject
+        </button>
+        <button (click)="runExample('replaySubject')" [class.active]="activeExample === 'replaySubject'">
+          ReplaySubject
+        </button>
+        <button (click)="runExample('asyncSubject')" [class.active]="activeExample === 'asyncSubject'">
+          AsyncSubject
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>🔄 Преобразование</h3>
+        <button (click)="runExample('map')" [class.active]="activeExample === 'map'">
+          map
+        </button>
+        <button (click)="runExample('scan')" [class.active]="activeExample === 'scan'">
+          scan
+        </button>
+        <button (click)="runExample('reduce')" [class.active]="activeExample === 'reduce'">
+          reduce
+        </button>
+        <button (click)="runExample('tap')" [class.active]="activeExample === 'tap'">
+          tap
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>🔀 Развёртывание</h3>
+        <button (click)="runExample('switchMap')" [class.active]="activeExample === 'switchMap'">
+          switchMap
+        </button>
+        <button (click)="runExample('mergeMap')" [class.active]="activeExample === 'mergeMap'">
+          mergeMap
+        </button>
+        <button (click)="runExample('concatMap')" [class.active]="activeExample === 'concatMap'">
+          concatMap
+        </button>
+        <button (click)="runExample('exhaustMap')" [class.active]="activeExample === 'exhaustMap'">
+          exhaustMap
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>🎯 Фильтрация</h3>
+        <button (click)="runExample('filter')" [class.active]="activeExample === 'filter'">
+          filter
+        </button>
+        <button (click)="runExample('debounceTime')" [class.active]="activeExample === 'debounceTime'">
+          debounceTime
+        </button>
+        <button (click)="runExample('throttleTime')" [class.active]="activeExample === 'throttleTime'">
+          throttleTime
+        </button>
+        <button (click)="runExample('distinctUntilChanged')" [class.active]="activeExample === 'distinctUntilChanged'">
+          distinctUntilChanged
+        </button>
+        <button (click)="runExample('takeUntil')" [class.active]="activeExample === 'takeUntil'">
+          takeUntil
+        </button>
+        <button (click)="runExample('takeWhile')" [class.active]="activeExample === 'takeWhile'">
+          takeWhile
+        </button>
+        <button (click)="runExample('skip')" [class.active]="activeExample === 'skip'">
+          skip
+        </button>
+        <button (click)="runExample('first')" [class.active]="activeExample === 'first'">
+          first
+        </button>
+        <button (click)="runExample('last')" [class.active]="activeExample === 'last'">
+          last
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>🔗 Комбинирование</h3>
+        <button (click)="runExample('combineLatest')" [class.active]="activeExample === 'combineLatest'">
+          combineLatest
+        </button>
+        <button (click)="runExample('merge')" [class.active]="activeExample === 'merge'">
+          merge
+        </button>
+        <button (click)="runExample('concat')" [class.active]="activeExample === 'concat'">
+          concat
+        </button>
+        <button (click)="runExample('zip')" [class.active]="activeExample === 'zip'">
+          zip
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>⚠️ Обработка ошибок</h3>
+        <button (click)="runExample('catchError')" [class.active]="activeExample === 'catchError'">
+          catchError
+        </button>
+        <button (click)="runExample('retry')" [class.active]="activeExample === 'retry'">
+          retry
+        </button>
+      </div>
+
+      <div class="category">
+        <h3>🛠️ Утилиты</h3>
+        <button (click)="runExample('startWith')" [class.active]="activeExample === 'startWith'">
+          startWith
+        </button>
+        <button (click)="runExample('shareReplay')" [class.active]="activeExample === 'shareReplay'">
+          shareReplay
+        </button>
+        <button (click)="runExample('every')" [class.active]="activeExample === 'every'">
+          every
+        </button>
+        <button (click)="runExample('find')" [class.active]="activeExample === 'find'">
+          find
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      @if (currentDescription) {
+        <div class="description-card">
+          <h2 class="description-title">{{ currentDescription.title }}</h2>
+          <p class="description-text">{{ currentDescription.description }}</p>
+
+          @if (currentDescription.input && currentDescription.output) {
+            <div class="io-container">
+              <div class="io-box input-box">
+                <div class="io-label">📥 Input</div>
+                <div class="io-value">{{ currentDescription.input }}</div>
+              </div>
+              <div class="io-arrow">→</div>
+              <div class="io-box output-box">
+                <div class="io-label">📤 Output</div>
+                <div class="io-value">{{ currentDescription.output }}</div>
+              </div>
+            </div>
+          }
+
+          <div class="description-use-case">
+            <strong>💡 Применение:</strong> {{ currentDescription.useCase }}
+          </div>
+        </div>
+      }
+
+      <div class="output-header">
+        <h2>📊 Лог Выполнения</h2>
+        <button class="clear-btn" (click)="clearLogs()">🗑️ Очистить</button>
+      </div>
+
+      <div class="output-container">
+        @if (logs.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>Логов пока нет. Выберите пример из боковой панели чтобы начать!</p>
+          </div>
+        }
+
+        @for (log of logs; track log.timestamp) {
+          <div class="log-entry" [attr.data-category]="log.category">
+            <span class="log-category">{{ log.category }}</span>
+            <span class="log-message">{{ log.message }}</span>
+            <span class="log-time">{{ log.timestamp | date:'HH:mm:ss.SSS' }}</span>
+          </div>
+        }
+      </div>
+    </main>
+  </div>
+</div>
+
 <router-outlet />
